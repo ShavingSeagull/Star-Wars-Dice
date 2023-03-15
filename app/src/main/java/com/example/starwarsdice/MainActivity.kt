@@ -1,5 +1,6 @@
 package com.example.starwarsdice
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -107,29 +108,24 @@ class MainActivity : AppCompatActivity() {
         )
 
         val whiteDice = findViewById<ImageView>(R.id.whiteDice)
-        whiteDice.setOnClickListener { diceRoll(whiteFaces) }
+        whiteDice.setOnClickListener { dicePick("whiteFaces") }
         val redDice = findViewById<ImageView>(R.id.redDice)
-        redDice.setOnClickListener { diceRoll(redFaces) }
+        redDice.setOnClickListener { dicePick("redFaces") }
         val yellowDice = findViewById<ImageView>(R.id.yellowDice)
-        yellowDice.setOnClickListener { diceRoll(yellowFaces) }
+        yellowDice.setOnClickListener { dicePick("yellowFaces") }
         val greenDice = findViewById<ImageView>(R.id.greenDice)
-        greenDice.setOnClickListener { diceRoll(greenFaces) }
+        greenDice.setOnClickListener { dicePick("greenFaces") }
         val purpleDice = findViewById<ImageView>(R.id.purpleDice)
-        purpleDice.setOnClickListener { diceRoll(purpleFaces) }
+        purpleDice.setOnClickListener { dicePick("purpleFaces") }
         val blueDice = findViewById<ImageView>(R.id.blueDice)
-        blueDice.setOnClickListener { diceRoll(blueFaces) }
+        blueDice.setOnClickListener { dicePick("blueFaces") }
         val blackDice = findViewById<ImageView>(R.id.blackDice)
-        blackDice.setOnClickListener { diceRoll(blackFaces) }
+        blackDice.setOnClickListener { dicePick("blackFaces") }
     }
 
-    private fun diceRoll(faces: ArrayList<Int>) {
-        val roll = (0 until faces.size).random()
-        val faceSelected = faces[roll]
-        Log.d("ROLL:", "$faceSelected")
-
-        val layout = findViewById<ConstraintLayout>(R.id.mainLayoutContainer)
-        val image = ImageView(this)
-        image.setImageResource(faceSelected)
-        layout.addView(image)
+    private fun dicePick(faces: String) {
+        val diceRollIntent = Intent(this, DiceRollActivity::class.java)
+        diceRollIntent.putExtra("faces", faces)
+        startActivity(diceRollIntent)
     }
 }
