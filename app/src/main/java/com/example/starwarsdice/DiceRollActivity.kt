@@ -1,14 +1,21 @@
 package com.example.starwarsdice
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.ViewCompat
 
 class DiceRollActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val dicePick = intent.getStringExtra("faces")
+        val numOfDice = intent.getIntExtra("numOfDice", 1)
         setContentView(R.layout.activity_diceroll)
         this.setFinishOnTouchOutside(true)
 
@@ -101,19 +108,70 @@ class DiceRollActivity : AppCompatActivity() {
             R.drawable.black_blank,
         )
 
-        val diceFaceImage = findViewById<ImageView>(R.id.diceFace)
+        val layout = findViewById<ConstraintLayout>(R.id.diceRollLayout)
+        val diceImageList = ArrayList<ImageView>()
 
-        // Sets the image to reflect what random face was rolled
-        when (dicePick) {
-            "whiteFaces" -> diceFaceImage.setImageResource(diceRoll(whiteFaces))
-            "redFaces" -> diceFaceImage.setImageResource(diceRoll(redFaces))
-            "yellowFaces" -> diceFaceImage.setImageResource(diceRoll(yellowFaces))
-            "greenFaces" -> diceFaceImage.setImageResource(diceRoll(greenFaces))
-            "purpleFaces" -> diceFaceImage.setImageResource(diceRoll(purpleFaces))
-            "blueFaces" -> diceFaceImage.setImageResource(diceRoll(blueFaces))
-            "blackFaces" -> diceFaceImage.setImageResource(diceRoll(blackFaces))
+        for (i in 1..numOfDice) {
+            val diceFaceImage = ImageView(this)
+            diceFaceImage.id = ViewCompat.generateViewId()
+            diceFaceImage.contentDescription = "Dice Face Image"
+            when (dicePick) {
+                "whiteFaces" -> diceFaceImage.setImageResource(diceRoll(whiteFaces))
+                "redFaces" -> diceFaceImage.setImageResource(diceRoll(redFaces))
+                "yellowFaces" -> diceFaceImage.setImageResource(diceRoll(yellowFaces))
+                "greenFaces" -> diceFaceImage.setImageResource(diceRoll(greenFaces))
+                "purpleFaces" -> diceFaceImage.setImageResource(diceRoll(purpleFaces))
+                "blueFaces" -> diceFaceImage.setImageResource(diceRoll(blueFaces))
+                "blackFaces" -> diceFaceImage.setImageResource(diceRoll(blackFaces))
+            }
+            diceImageList.add(diceFaceImage)
+            layout.addView(diceFaceImage)
         }
 
+        val viewIds = IntArray(numOfDice)
+        for (img in diceImageList) {
+            viewIds[diceImageList.indexOf(img)] = img.id
+        }
+
+        Log.d("NUM OF DICE:", "$numOfDice")
+        Log.d("DICE LIST:", "$diceImageList")
+        Log.d("VIEW IDS:", "$viewIds")
+
+        val diceRollBg = findViewById<View>(R.id.diceRollBackground)
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(layout)
+
+        var prevImg: ImageView? = null
+
+        for (img in diceImageList) {
+            val lastItem = diceImageList.indexOf(img) == diceImageList.size - 1
+            if (prevImg == null) {
+                constraintSet.connect(img.id, ConstraintSet.TOP, diceRollBg.id, ConstraintSet.TOP)
+            } else {
+                constraintSet.connect(img.id, ConstraintSet.TOP, prevImg.id, ConstraintSet.BOTTOM)
+                if (lastItem) {
+                    constraintSet.connect(img.id, ConstraintSet.BOTTOM, closeBtn.id, ConstraintSet.TOP)
+                }
+            }
+            if (diceImageList.size == 1) {
+                constraintSet.connect(img.id, ConstraintSet.BOTTOM, closeBtn.id, ConstraintSet.TOP)
+            }
+            constraintSet.connect(img.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
+            constraintSet.connect(img.id, ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT)
+            prevImg = img
+        }
+        if (numOfDice > 1) {
+            constraintSet.createVerticalChain(
+                diceRollBg.id,
+                ConstraintSet.TOP,
+                closeBtn.id,
+                ConstraintSet.TOP,
+                viewIds,
+                null,
+                ConstraintSet.CHAIN_SPREAD
+            )
+        }
+        constraintSet.applyTo(layout)
     }
 
     private fun diceRoll(faces: ArrayList<Int>): Int {
