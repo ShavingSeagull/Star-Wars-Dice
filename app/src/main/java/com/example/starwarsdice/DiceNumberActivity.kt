@@ -43,7 +43,7 @@ class DiceNumberActivity : AppCompatActivity() {
             val param = newBtn.layoutParams as ViewGroup.MarginLayoutParams
             param.setMargins(0, 30, 0, 70)
             newBtn.layoutParams = param
-            newBtn.setOnClickListener { numberPick(dicePick) }
+            newBtn.setOnClickListener { numberPick(dicePick, diceNum) }
         }
 
         val viewIds = IntArray(diceNum)
@@ -83,9 +83,10 @@ class DiceNumberActivity : AppCompatActivity() {
         constraintSet.applyTo(layout)
     }
 
-    private fun numberPick(faces: String?) {
+    private fun numberPick(faces: String?, numOfDice: Int) {
         val diceRollIntent = Intent(this, DiceRollActivity::class.java)
         diceRollIntent.putExtra("faces", faces)
+        diceRollIntent.putExtra("numOfDice", numOfDice)
         startActivity(diceRollIntent)
     }
 }
