@@ -124,7 +124,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dicePick(faces: String) {
-        val diceRollIntent = Intent(this, DiceRollActivity::class.java)
+        val diceRollIntent: Intent?
+        val singularDice = arrayListOf("whiteFaces", "redFaces")
+        diceRollIntent = if (faces in singularDice) {
+            Intent(this, DiceRollActivity::class.java)
+        } else {
+            Intent(this, DiceNumberActivity::class.java)
+        }
         diceRollIntent.putExtra("faces", faces)
         startActivity(diceRollIntent)
     }
