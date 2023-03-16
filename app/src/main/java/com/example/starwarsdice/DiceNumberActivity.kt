@@ -36,7 +36,6 @@ class DiceNumberActivity : AppCompatActivity() {
             newBtn.text = i.toString()
             newBtn.setPadding(20, 10, 20, 10)
             newBtn.setTextSize(80f)
-            newBtn.requestLayout()
             diceBtnList.add(newBtn)
             layout.addView(newBtn)
             val param = newBtn.layoutParams as ViewGroup.MarginLayoutParams
