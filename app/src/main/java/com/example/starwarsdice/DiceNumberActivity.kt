@@ -1,5 +1,7 @@
 package com.example.starwarsdice
 
+import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -41,6 +43,7 @@ class DiceNumberActivity : AppCompatActivity() {
             val param = newBtn.layoutParams as ViewGroup.MarginLayoutParams
             param.setMargins(0, 30, 0, 70)
             newBtn.layoutParams = param
+            newBtn.setOnClickListener { numberPick(dicePick) }
         }
 
         val viewIds = IntArray(diceNum)
@@ -78,5 +81,11 @@ class DiceNumberActivity : AppCompatActivity() {
             ConstraintSet.CHAIN_SPREAD
         )
         constraintSet.applyTo(layout)
+    }
+
+    private fun numberPick(faces: String?) {
+        val diceRollIntent = Intent(this, DiceRollActivity::class.java)
+        diceRollIntent.putExtra("faces", faces)
+        startActivity(diceRollIntent)
     }
 }
