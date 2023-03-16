@@ -1,13 +1,9 @@
 package com.example.starwarsdice
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 
 class DiceRollActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
