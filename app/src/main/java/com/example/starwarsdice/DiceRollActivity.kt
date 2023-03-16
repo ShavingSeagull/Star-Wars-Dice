@@ -105,17 +105,7 @@ class DiceRollActivity : AppCompatActivity() {
             R.drawable.black_blank,
         )
 
-        val diceRollBackground = findViewById<View>(R.id.diceRollBackground)
         val diceFaceImage = findViewById<ImageView>(R.id.diceFace)
-        val lightBorderFaces = arrayListOf("redFaces", "purpleFaces", "blackFaces")
-
-        // Sets the background colour for the rice roll result, depending on dice face border colour
-        // Eg: if the border colour is white, the background will be black and vice versa
-        if (dicePick in lightBorderFaces) {
-            diceRollBackground.setBackgroundColor(Color.BLACK)
-        } else {
-            diceRollBackground.setBackgroundColor(Color.WHITE)
-        }
 
         // Sets the image to reflect what random face was rolled
         when (dicePick) {

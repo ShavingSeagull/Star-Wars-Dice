@@ -38,6 +38,7 @@
         android:id="@+id/diceRollBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottomHori"
         app:layout_constraintEnd_toStartOf="@id/guidelineRightVert"
         app:layout_constraintStart_toEndOf="@id/guidelineLeftVert"
