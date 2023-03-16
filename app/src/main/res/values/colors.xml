@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Custom dice colors -->
+    <color name="red_dice">#E31836</color>
+    <color name="yellow_dice">#FFE900</color>
+    <color name="green_dice">#52B946</color>
+    <color name="purple_dice">#52227E</color>
+    <color name="blue_dice">#A3D7F5</color>
 </resources>
