@@ -21,6 +21,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".DiceNumberActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/DiceRollDialog"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".DiceRollActivity"
             android:excludeFromRecents="true"
             android:theme="@style/DiceRollDialog"
