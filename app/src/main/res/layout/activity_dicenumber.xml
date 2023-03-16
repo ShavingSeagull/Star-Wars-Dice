@@ -21,20 +21,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.75" />
 
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guidelineLeftVert"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintGuide_percent="0.10" />-->
-
-<!--    <androidx.constraintlayout.widget.Guideline-->
-<!--        android:id="@+id/guidelineRightVert"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layout_constraintGuide_percent="0.90" />-->
-
     <View
         android:id="@+id/diceNumberBackground"
         android:layout_width="0dp"
@@ -45,36 +31,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guidelineTopHoriz" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/diceFace"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:contentDescription="Dice Face"-->
-<!--        android:padding="100dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/closeButton"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/guidelineRightVert"-->
-<!--        app:layout_constraintStart_toEndOf="@id/guidelineLeftVert"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/guidelineTopHori" />-->
+    <TextView
+        android:id="@+id/diceBtnConfirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How many dice would you like to roll?"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTopHoriz" />
 
     <Button
         android:id="@+id/closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OK"
+        android:textSize="18sp"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBottomHoriz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="40dp"
-        android:paddingVertical="20dp"
-        android:text="1"
-        android:textSize="40sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="306dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
