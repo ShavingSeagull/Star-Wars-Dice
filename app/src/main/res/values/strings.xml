@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Star Wars Dice</string>
+    <string name="dice_roll_prompt">How many dice would you like to roll?</string>
+    <string name="btn_close_text">OK</string>
+    <string name="white_die_desc">White Dice</string>
+    <string name="red_die_desc">Red Dice</string>
+    <string name="yellow_die_desc">Yellow Dice</string>
+    <string name="green_die_desc">Green Dice</string>
+    <string name="purple_die_desc">Purple Dice</string>
+    <string name="blue_die_desc">Blue Dice</string>
+    <string name="black_die_desc">Black Dice</string>
 </resources>
