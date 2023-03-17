@@ -1,7 +1,6 @@
 package com.example.starwarsdice
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -26,12 +25,15 @@ class DiceNumberActivity : AppCompatActivity() {
         val diceBtnList = ArrayList<Button>()
         val layout = findViewById<ConstraintLayout>(R.id.diceNumberLayout)
 
+        // Sets the max number of dice that can be chosen, based on game rules
+        // Note: white and red are single dice
         diceNum = when (dicePick) {
             "yellowFaces", "blueFaces", "blackFaces" -> 2
             "greenFaces", "purpleFaces" -> 3
             else -> 1
         }
 
+        // Creates the necessary numbers of dice selection buttons programmatically and adds them to the layout
         for (i in 1..diceNum) {
             val newBtn = Button(this)
             newBtn.id = ViewCompat.generateViewId()
@@ -46,11 +48,13 @@ class DiceNumberActivity : AppCompatActivity() {
             newBtn.setOnClickListener { numberPick(dicePick, i) }
         }
 
+        // Adds the IDs of the new buttons to an array for use with the chaining method below
         val viewIds = IntArray(diceNum)
         for (btn in diceBtnList) {
             viewIds[diceBtnList.indexOf(btn)] = btn.id
         }
 
+        // Clones the layout and adds the constraints to the new buttons
         val diceBtnConfirmation = findViewById<TextView>(R.id.diceBtnConfirmation)
         val constraintSet = ConstraintSet()
         constraintSet.clone(layout)
@@ -83,6 +87,10 @@ class DiceNumberActivity : AppCompatActivity() {
         constraintSet.applyTo(layout)
     }
 
+    /**
+     * Takes in a dice set via the [faces] param, as well as max number of dice that can be
+     * selected via [numOfDice]. Starts the dice roll activity, passing those values through.
+     */
     private fun numberPick(faces: String?, numOfDice: Int) {
         val diceRollIntent = Intent(this, DiceRollActivity::class.java)
         diceRollIntent.putExtra("faces", faces)
