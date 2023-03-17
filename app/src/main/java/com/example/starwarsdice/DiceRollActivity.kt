@@ -1,11 +1,9 @@
 package com.example.starwarsdice
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -17,7 +15,7 @@ class DiceRollActivity : AppCompatActivity() {
         val dicePick = intent.getStringExtra("faces")
         val numOfDice = intent.getIntExtra("numOfDice", 1)
         setContentView(R.layout.activity_diceroll)
-        this.setFinishOnTouchOutside(true)
+        this.setFinishOnTouchOutside(false)
 
         val closeBtn = findViewById<Button>(R.id.closeButton)
         closeBtn.setOnClickListener { finish() }
@@ -111,6 +109,8 @@ class DiceRollActivity : AppCompatActivity() {
         val layout = findViewById<ConstraintLayout>(R.id.diceRollLayout)
         val diceImageList = ArrayList<ImageView>()
 
+        // Creates the necessary number of dice programmatically and adds them to the layout
+        // Also generates the dice rolls
         for (i in 1..numOfDice) {
             val diceFaceImage = ImageView(this)
             diceFaceImage.id = ViewCompat.generateViewId()
@@ -128,15 +128,13 @@ class DiceRollActivity : AppCompatActivity() {
             layout.addView(diceFaceImage)
         }
 
+        // Adds the new dice image ID's to an array for use with the chainer method below
         val viewIds = IntArray(numOfDice)
         for (img in diceImageList) {
             viewIds[diceImageList.indexOf(img)] = img.id
         }
 
-        Log.d("NUM OF DICE:", "$numOfDice")
-        Log.d("DICE LIST:", "$diceImageList")
-        Log.d("VIEW IDS:", "$viewIds")
-
+        // Clones the layout and adds the constraints to the new dice images
         val diceRollBg = findViewById<View>(R.id.diceRollBackground)
         val constraintSet = ConstraintSet()
         constraintSet.clone(layout)
@@ -146,7 +144,7 @@ class DiceRollActivity : AppCompatActivity() {
         for (img in diceImageList) {
             val lastItem = diceImageList.indexOf(img) == diceImageList.size - 1
             if (prevImg == null) {
-                constraintSet.connect(img.id, ConstraintSet.TOP, diceRollBg.id, ConstraintSet.TOP)
+                constraintSet.connect(img.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
             } else {
                 constraintSet.connect(img.id, ConstraintSet.TOP, prevImg.id, ConstraintSet.BOTTOM)
                 if (lastItem) {
@@ -154,6 +152,7 @@ class DiceRollActivity : AppCompatActivity() {
                 }
             }
             if (diceImageList.size == 1) {
+                img.setPadding(100,100,100,100)
                 constraintSet.connect(img.id, ConstraintSet.BOTTOM, closeBtn.id, ConstraintSet.TOP)
             }
             constraintSet.connect(img.id, ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT)
@@ -174,6 +173,10 @@ class DiceRollActivity : AppCompatActivity() {
         constraintSet.applyTo(layout)
     }
 
+    /**
+     * Generates a random number between 0 and the size of the [faces] array passed in.
+     * Uses this number to pick a random element from the array and returns it.
+     */
     private fun diceRoll(faces: ArrayList<Int>): Int {
         val roll = (0 until faces.size).random()
         return faces[roll]
