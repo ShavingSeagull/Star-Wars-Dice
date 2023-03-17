@@ -2,6 +2,7 @@
     <string name="app_name">Star Wars Dice</string>
     <string name="dice_roll_prompt">How many dice would you like to roll?</string>
     <string name="btn_close_text">OK</string>
+    <string name="sw_logo">Star Wars Logo</string>
     <string name="white_die_desc">White Dice</string>
     <string name="red_die_desc">Red Dice</string>
     <string name="yellow_die_desc">Yellow Dice</string>
