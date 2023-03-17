@@ -1,6 +1,7 @@
 package com.example.starwarsdice
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -12,6 +13,8 @@ import androidx.core.view.ViewCompat
 
 
 class DiceNumberActivity : AppCompatActivity() {
+    var mMediaPlayer: MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val dicePick = intent.getStringExtra("faces")
@@ -90,12 +93,38 @@ class DiceNumberActivity : AppCompatActivity() {
     /**
      * Takes in a dice set via the [faces] param, as well as max number of dice that can be
      * selected via [numOfDice]. Starts the dice roll activity, passing those values through.
+     * Plays a dice roll sound effect for 1.2 seconds before firing the roll activity.
      */
     private fun numberPick(faces: String?, numOfDice: Int) {
-        val diceRollIntent = Intent(this, DiceRollActivity::class.java)
-        diceRollIntent.putExtra("faces", faces)
-        diceRollIntent.putExtra("numOfDice", numOfDice)
-        startActivity(diceRollIntent)
-        finish()
+        val background = object : Thread() {
+            override fun run() {
+                try {
+                    if (mMediaPlayer == null) {
+                        mMediaPlayer = MediaPlayer.create(baseContext, R.raw.dice_roll)
+                        mMediaPlayer!!.isLooping = false
+                        mMediaPlayer!!.start()
+                    } else mMediaPlayer!!.start()
+
+                    sleep(1200)
+
+                    val intent = Intent(baseContext, DiceRollActivity::class.java)
+                    intent.putExtra("faces", faces)
+                    intent.putExtra("numOfDice", numOfDice)
+                    startActivity(intent)
+                    finish()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        background.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (mMediaPlayer != null) {
+            mMediaPlayer!!.release()
+            mMediaPlayer = null
+        }
     }
 }
