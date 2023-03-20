@@ -10,15 +10,18 @@ Not a bit of React Native in sight, how wonderful!
 
 ## Features
 The app allows the player to select which die they want to roll from the main page:
-![main screen](https://res.cloudinary.com/dtnhdg7eq/image/upload/c_scale,w_400/v1679343919/sw_main_page_mcaw1g.jpg)
+
+![main screen](https://res.cloudinary.com/dtnhdg7eq/image/upload/c_scale,w_200/v1679343919/sw_main_page_mcaw1g.jpg)
 
 Then, if the game only includes one type of that die, it will roll it immediately. If it is a die that comes 
 in multiple forms (as most do in the game), the app will instead prompt the user for the number of those 
 particular dice they wish to roll:
-![number prompt](https://res.cloudinary.com/dtnhdg7eq/image/upload/c_scale,w_400/v1679343919/sw_number_select_eqt7rc.jpg)
+
+![number prompt](https://res.cloudinary.com/dtnhdg7eq/image/upload/c_scale,w_200/v1679343919/sw_number_select_eqt7rc.jpg)
 
 Finally, the app will perform the necessary number of rolls and show the results:
-![roll result](https://res.cloudinary.com/dtnhdg7eq/image/upload/c_scale,w_400/v1679343919/sw_results_owvmlo.jpg)
+
+![roll result](https://res.cloudinary.com/dtnhdg7eq/image/upload/c_scale,w_200/v1679343919/sw_results_owvmlo.jpg)
 
 Presto!
 
