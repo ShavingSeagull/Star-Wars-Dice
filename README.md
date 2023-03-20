@@ -25,6 +25,15 @@ Finally, the app will perform the necessary number of rolls and show the results
 
 Presto!
 
+## Installing
+While the project can be loaded into Android Studio and the debug version installed that way, the production version APK 
+file is also included in the [release](app/release) directory. The latest release can be located on the Git 'Release' tab, where 
+the APK file is included on its own, for ease.
+
+Note, though the APK file is digitally signed, you will need to allow app installations from unknown locations on your device. Any 
+average user of Android is likely familiar with that at this point; the setting for which can usually be found under the 'Security' 
+section of your device.
+
 ## Licence & Copyright
 All original copyright of the Star Wars name is held by [LucasFilm](https://www.lucasfilm.com/) and, by extension, [Disney](https://www.disney.com/). 
 Copyright of the Star Wars tabletop games and all dice imagery is held by [Fantasy Flight Games](https://www.fantasyflightgames.com/). This app is in no way affiliated 
