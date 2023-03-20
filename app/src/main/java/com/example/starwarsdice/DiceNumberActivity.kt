@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 
 
@@ -41,7 +42,8 @@ class DiceNumberActivity : AppCompatActivity() {
             val newBtn = Button(this)
             newBtn.id = ViewCompat.generateViewId()
             newBtn.text = i.toString()
-            newBtn.setPadding(20, 10, 20, 10)
+            newBtn.typeface = ResourcesCompat.getFont(this, R.font.starjedi)
+            newBtn.setPadding(20, 0, 20, 30)
             newBtn.setTextSize(80f)
             diceBtnList.add(newBtn)
             layout.addView(newBtn)
