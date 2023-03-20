@@ -27,6 +27,6 @@ Presto!
 
 ## Licence & Copyright
 All original copyright of the Star Wars name is held by [LucasFilm](https://www.lucasfilm.com/) and, by extension, [Disney](https://www.disney.com/). 
-Copyright of the Star Wars tabletop games is held by [Fantasy Flight Games](https://www.fantasyflightgames.com/). This app is in no way affiliated 
+Copyright of the Star Wars tabletop games and all dice imagery is held by [Fantasy Flight Games](https://www.fantasyflightgames.com/). This app is in no way affiliated 
 with either LucasFilm, Disney or Fantasy Flight Games and serves only as a personal project, not monetised or commercially released in any way. 
 This app's source code has been released under the MIT licence.
